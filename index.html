@@ -13,6 +13,67 @@
             background: url(BRwebpage.png) no-repeat center center fixed;
             background-size: cover;
         }
+        .announcement {
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .announcement span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 10s linear infinite;
+        }
+        @keyframes marquee {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+        .phst-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: black;
+    color: white;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1000;
+    height: 31px;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+}
+
+.phst-time {
+    font-size: 18px; /* Adjust font size for better fit */
+}
+
+.phst-date {
+    font-size: 6px; /* Make date smaller to fit */
+    margin-top: -2px; /* Reduce gap between time and date */
+}
+        .date {
+            font-size: 8px;
+            margin-top: 2px;
+        }
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+            gap: 20px;
+        }
+        .logo-container img {
+            width: 300px;
+        }
         header {
             background-color: transparent;
             color: white;
@@ -37,60 +98,6 @@
         header h1 {
             font-size: 50px;
         }
-        .announcement {
-            background: rgba(255, 0, 0, 0.8);
-            color: white;
-            padding: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 2;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-        .announcement span {
-            display: inline-block;
-            padding-left: 100%;
-            animation: marquee 10s linear infinite;
-        }
-        @keyframes marquee {
-            from {
-                transform: translateX(100%);
-            }
-            to {
-                transform: translateX(-100%);
-            }
-        }
-        .pst-container {
-            position: fixed;
-            top: 50px;
-            right: 40px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 20px;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            z-index: 3;
-            transition: all 0.3s ease;
-        }
-        .pst-container:hover {
-            background: rgba(0, 0, 0, 0.9);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
-        }
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 50px;
-            gap: 20px;
-        }
-        .logo-container img {
-            width: 300px;
-        }
         .buttons {
             display: flex;
             flex-direction: column;
@@ -111,30 +118,6 @@
         .buttons button:hover {
             background-color: #b71c1c;
         }
-        .hotlines {
-            position: fixed;
-            bottom: 110px;
-            right: 20px;
-            background: rgba(128, 128, 128, 0.9);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 15px;
-            font-size: 16px;
-            line-height: 1.6;
-            width: 260px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 10;
-        }
-        .hotlines h3 {
-            margin: 0 0 10px 0;
-            font-size: 18px;
-            color: #ffcc00;
-        }
-        .hotlines p {
-            margin: 5px 0;
-            font-weight: bold;
-        }
         .weather-map {
             position: fixed;
             bottom: 110px;
@@ -150,54 +133,101 @@
             background-color: rgba(50, 50, 50, 0.8);
             color: white;
             text-align: center;
-            padding: 15px;
             width: 100%;
+            height: 80px;
             position: fixed;
             bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             font-weight: bold;
+            padding: 5px 0;
+        }
+        .hotlines {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            font-size: 16px;
+            color: #ffcc00;
+            margin-bottom: 8px;
+        }
+        .hotlines p {
+            margin: 0;
+        }
+        .facebook-link {
+            text-decoration: none;
+            color: #ffcc00;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .copyright {
+            font-size: 12px;
         }
     </style>
 </head>
 <body>
     <div class="announcement"><span>WALANG PASOK BUKAS!!!!!!</span></div>
-    <div class="pst-container" id="pst">PST: Loading...</div> <!-- Container for the live time -->
+    <div class="phst-container">
+    <div id="phst-time">Loading...</div>
+    <div id="phst-date">Loading...</div>
+</div>
     <div class="logo-container">
         <img src="2.png" alt="Municipal Government Logo">
         <img src="1.png" alt="MDRRMO Logo">
     </div>
+
     <header>
         <h1>Municipal Disaster Risk Reduction and Management Office</h1>
         <h2>Jose Panganiban, Camarines Norte</h2>
     </header>
+
     <div class="buttons">
-        <button onclick="location.href='BACKGROUND.html'">Background</button>
-        <button onclick="location.href='Services.html'">Services Offered</button>
-        <button onclick="location.href='Structure.html'">Organizational Structure</button>
+        <button onclick="location.href='background.html'">Background</button>
+        <button onclick="location.href='services.html'">Services Offered</button>
+        <button onclick="location.href='structure.html'">Organizational Structure</button>
     </div>
-    <div class="hotlines">
-        <h3>EMERGENCY HOTLINES</h3>
-        <p>MDRRMO (TM): 09617163626 </p>
-        <p>MDRRMO (SMART): 09368250417</p>
-        <p>Fire: 09209895918</p>
-        <p>Police: 09985985956</p>
-    </div>
+
     <div class="weather-map">
         <iframe src="https://embed.windy.com/embed2.html?lat=14.29&lon=122.69&zoom=6&level=surface&overlay=rain&menu=true&message=true&marker=true&calendar=now&pressure=true&type=map&location=coordinates&detail=true&detailLat=14.29&detailLon=122.69&metricWind=default&metricTemp=default&radarRange=-1" width="600" height="400" frameborder="0"></iframe>
     </div>
-    <footer>
-        <p>&copy; 2025 Jose Panganiban MDRRMO. All rights reserved.</p>
-        <a class="facebook-link" href="https://www.facebook.com/josepanganiban.mdrrmo" target="_blank">Follow us on Facebook</a>
-    </footer>
 
-    <script>
-        function updateTime() {
-            const options = { timeZone: "Asia/Manila", hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' };
-            const time = new Date().toLocaleTimeString("en-US", options);
-            document.getElementById("pst").innerText = `PST: ${time}`;
-        }
-        
-        setInterval(updateTime, 1000); // Update every second
-        updateTime(); // Initial call to display time immediately on load
-    </script>
+    <footer>
+        <div class="hotlines">
+            <p>MDRRMO (TM): 09617163626</p>
+            <p>MDRRMO (SMART): 09368250417</p>
+            <p>Jose Panganiban BFP: 09209895918</p>
+            <p>Jose Panganiban PNP: 09985985956</p>
+        </div>
+        <a class="facebook-link" href="https://www.facebook.com/josepanganiban.mdrrmo" target="_blank">Follow us on Facebook</a>
+        <div class="copyright">&copy; 2025 Jose Panganiban MDRRMO. All rights reserved.</div>
+    </footer>
+	<script>
+    function updateTime() {
+        // Force correct PH time (UTC+8)
+        const now = new Date();
+        const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+        const phTime = new Date(); // UTC+8
+
+        // Format time (24-hour)
+        const hours = String(phTime.getHours()).padStart(2, '0');
+        const minutes = String(phTime.getMinutes()).padStart(2, '0');
+        const seconds = String(phTime.getSeconds()).padStart(2, '0');
+        const time = `${hours}:${minutes}:${seconds}`;
+
+        // Format date (MM/DD/YYYY)
+        const month = String(phTime.getMonth() + 1).padStart(2, '0'); // Month is 0-based
+        const day = String(phTime.getDate()).padStart(2, '0');
+        const year = phTime.getFullYear();
+        const date = `${month}/${day}/${year}`;
+
+        document.getElementById("phst-time").innerText = time;
+        document.getElementById("phst-date").innerText = date;
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+</script>
 </body>
 </html>
