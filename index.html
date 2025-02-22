@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Jose Panganiban MDRRMO</title>
     <style>
         body {
@@ -36,30 +36,30 @@
             to { transform: translateX(-100%); }
         }
         .phst-container {
-    position: fixed;
-    top: 0;
-    right: 0;
-    background: black;
-    color: white;
-    padding: 5px 10px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    z-index: 1000;
-    height: 31px;
-    display: flex;
-    flex-direction: column;
-    justify-content: right;
-}
+            position: fixed;
+            top: 0;
+            right: 0;
+            background: black;
+            color: white;
+            padding: 5px 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1000;
+            height: 31px;
+            display: flex;
+            flex-direction: column;
+            justify-content: right;
+        }
 
-.phst-time {
-    font-size: 18px; /* Adjust font size for better fit */
-}
+        .phst-time {
+            font-size: 18px;
+        }
 
-.phst-date {
-    font-size: 6px; /* Make date smaller to fit */
-    margin-top: -2px; /* Reduce gap between time and date */
-}
+        .phst-date {
+            font-size: 6px;
+            margin-top: -2px;
+        }
         .date {
             font-size: 8px;
             margin-top: 2px;
@@ -73,6 +73,7 @@
         }
         .logo-container img {
             width: 300px;
+            max-width: 100%;
         }
         header {
             background-color: transparent;
@@ -165,6 +166,45 @@
         .copyright {
             font-size: 12px;
         }
+
+        /* Media Queries for mobile responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 40px;
+            }
+            .buttons button {
+                font-size: 16px;
+                padding: 8px 16px;
+            }
+            .weather-map {
+                width: 90%;
+                height: 250px;
+                left: 5%;
+            }
+            .logo-container {
+                margin-top: 30px;
+                gap: 15px;
+            }
+            footer {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 30px;
+            }
+            header h2 {
+                font-size: 18px;
+            }
+            .phst-container {
+                font-size: 12px;
+            }
+            .buttons button {
+                font-size: 14px;
+                padding: 8px 14px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -205,19 +245,16 @@
     </footer>
 	<script>
     function updateTime() {
-        // Force correct PH time (UTC+8)
         const now = new Date();
         const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-        const phTime = new Date(); // UTC+8
+        const phTime = new Date(); 
 
-        // Format time (24-hour)
         const hours = String(phTime.getHours()).padStart(2, '0');
         const minutes = String(phTime.getMinutes()).padStart(2, '0');
         const seconds = String(phTime.getSeconds()).padStart(2, '0');
         const time = `${hours}:${minutes}:${seconds}`;
 
-        // Format date (MM/DD/YYYY)
-        const month = String(phTime.getMonth() + 1).padStart(2, '0'); // Month is 0-based
+        const month = String(phTime.getMonth() + 1).padStart(2, '0');
         const day = String(phTime.getDate()).padStart(2, '0');
         const year = phTime.getFullYear();
         const date = `${month}/${day}/${year}`;
